@@ -35,7 +35,7 @@ Available categories: `technology`, `business`, `science`, `sports`, `health`
 
 **GET /health**
 ```bash
-curl http://<EC2_PUBLIC_IP>/health
+curl http://54.172.32.188/health
 ```
 ```json
 {"status": "ok"}
@@ -43,7 +43,7 @@ curl http://<EC2_PUBLIC_IP>/health
 
 **GET /news?category=technology&limit=2**
 ```bash
-curl "http://<EC2_PUBLIC_IP>/news?category=technology&limit=2"
+curl "http://54.172.32.188/news?category=technology&limit=2"
 ```
 ```json
 [
@@ -68,7 +68,7 @@ curl "http://<EC2_PUBLIC_IP>/news?category=technology&limit=2"
 
 **GET /news/999** (article does not exist)
 ```bash
-curl http://<EC2_PUBLIC_IP>/news/999
+curl http://54.172.32.188/news/999
 ```
 ```json
 {"detail": "Article 999 not found"}
@@ -85,7 +85,7 @@ Returns HTTP status `404`.
 
 ### Run without Docker
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/kwesiemprah-sudo/news-api.git
 cd news-api
 
 python3 -m venv .venv
@@ -121,7 +121,7 @@ curl http://localhost:8080/health
 | AMI | Amazon Linux 2023 |
 | Instance type | t3.micro |
 | Region | us-east-1 |
-| Public IP | `<EC2_PUBLIC_IP>` |
+| Public IP | `54.172.32.188` |
 
 ### Security group rules
 
@@ -134,7 +134,7 @@ Only these two ports are open. All other inbound traffic is denied by default, f
 
 ### SSH into the instance
 ```bash
-ssh -i ~/.ssh/<your_key> <user>@<EC2_PUBLIC_IP>
+ssh -i ~/.ssh/id_ed25519_assignment kwesi@54.172.32.188
 ```
 
 ### Install Docker on the instance
@@ -150,7 +150,7 @@ docker --version
 
 ### Deploy the container
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/kwesiemprah-sudo/news-api.git
 cd news-api
 
 docker build -t news-api .
@@ -171,11 +171,11 @@ Traffic arriving at the EC2 instance on port 80 is forwarded by Docker to port 8
 ### Verify from outside EC2
 Run these from a machine other than the EC2 instance:
 ```bash
-curl http://<EC2_PUBLIC_IP>/health
-curl http://<EC2_PUBLIC_IP>/news
-curl "http://<EC2_PUBLIC_IP>/news?category=technology"
-curl http://<EC2_PUBLIC_IP>/news/1
-curl -i http://<EC2_PUBLIC_IP>/news/999   # expect 404
+curl http://54.172.32.188/health
+curl http://54.172.32.188/news
+curl "http://54.172.32.188/news?category=technology"
+curl http://54.172.32.188/news/1
+curl -i http://54.172.32.188/news/999   # expect 404
 ```
 
 ---
@@ -198,9 +198,9 @@ docker rm -f news-api          # remove
 
 | Resource | URL |
 |---|---|
-| Health check | `http://<EC2_PUBLIC_IP>/health` |
-| News feed | `http://<EC2_PUBLIC_IP>/news` |
-| Interactive docs | `http://<EC2_PUBLIC_IP>/docs` |
+| Health check | `http://54.172.32.188/health` |
+| News feed | `http://54.172.32.188/news` |
+| Interactive docs | `http://54.172.32.188/docs` |
 
 ---
 
