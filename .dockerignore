@@ -1,0 +1,23 @@
+# Version control
+.git
+.gitignore
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Documentation and local notes
+README.md
+*.md
+
+# Environment files (never bake secrets into an image)
+.env
+*.env
